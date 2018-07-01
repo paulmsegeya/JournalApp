@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  ~ Developer :   Paul Msegeya
+  ~
+  ~ Email : paul.msegeya@gmail.com
+  ~
+  ~ Cell  : +255756734448
+  ~
+  ~ Country:  Tanzania
+  ~
+  ~ Track :  Android Developer Track
+  ~
+  ~
+  ~ Copyright (c) 2018
+  -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true">
+
+        <EditText
+            android:id="@+id/mEditTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="27dp"
+            android:textAlignment="center"
+            android:hint="@string/journal_title"
+            android:inputType="" />
+
+        <EditText
+            android:id="@+id/mEditDecription"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="120dp"
+            android:textAlignment="center"
+            android:hint="@string/journal_description"
+            android:inputType="" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1">
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonAddJournal"
+            android:hint="@string/add"
+            android:layout_alignParentTop="true" />
+
+
+        <Button
+            android:id="@+id/buttonViewJournals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:hint="@string/journals"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

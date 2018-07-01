@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">JornalApp</string>
+    <string name="journal_title">Journal Title</string>
+    <string name="journal_description">Journal Description</string>
+    <string name="add">Add</string>
+    <string name="journals">Journals</string>
+
+
+</resources>
