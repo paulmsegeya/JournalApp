@@ -18,9 +18,11 @@ package com.udacity.challenge.journalapp.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class JournalDatabaseHelper extends SQLiteOpenHelper {
@@ -33,9 +35,10 @@ public class JournalDatabaseHelper extends SQLiteOpenHelper {
 
     //Define  Table Columns
     private static final String ID_COLUMN = "ID";
-    private static final String TITLE_COLUMN = "TILE";
+    private static final String TITLE_COLUMN = "TITLE";
     private static final String DESCRIPTION_COLUMN = "DESCRIPTION";
     private static final String CREATEDAT_COLUMN = "CREATEDAT";
+    private static final String SELECT_ALL_JOURNALS_COMMAND="SELECT * FROM  JOURNALS";
 
     // define SQL Commands
 
@@ -100,7 +103,7 @@ public class JournalDatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public boolean deleteData(String journalTitle){
+    public boolean deleteData(int  id , String journalTitle){
 
         long dbProcessingResult=0;
         boolean statusFlag=false;
@@ -108,70 +111,57 @@ public class JournalDatabaseHelper extends SQLiteOpenHelper {
         // get sql lite context
 
         SQLiteDatabase  db= this.getWritableDatabase();
-        ContentValues  contentValues= new ContentValues();
-        contentValues.put(TITLE_COLUMN,journalTitle);
 
-        Log.d(TAG,"About to Delete Data to the Journal   DATA >>  TITLE :"+journalTitle);
+        String sql="DELETE FROM JOURNALS WHERE TITLE = "+journalTitle+ " AND ID ="+id;
+        Log.d(TAG,"DELETE JOURNALS WITH TITLE :"+journalTitle);
 
-
-
-        if (dbProcessingResult==0){
-           // dbProcessingResult=db.insert(TABLE_NAME,null,contentValues);
-
-            dbProcessingResult=db.delete(TABLE_NAME,null, null);
-
-            if (statusFlag=false){
-
-                if (dbProcessingResult>=0){
-                    Log.d(TAG,"DELETED SUCCESSFULLY  DATA >>  TITLE :"+journalTitle +"RESULT : "+dbProcessingResult);
-
-
-                }else if (dbProcessingResult==-1){
-                    Log.d(TAG,"DELETE  FAILED  DATA >>  TITLE :"+journalTitle + " DESCRIPTION :"+dbProcessingResult);
-
-                }
-            }
-
-        }
+        db.execSQL(sql);
+        statusFlag=true;
 
         return  statusFlag;
     }
 
-    public boolean updateData(String journalTitle , String newJournalTitle){
+
+
+    public boolean updateData(String oldItem ,int id, String newItem){
 
         long dbProcessingResult=0;
         boolean statusFlag=false;
-
-        // get sql lite context
-
         SQLiteDatabase  db= this.getWritableDatabase();
-        ContentValues  contentValues= new ContentValues();
-        contentValues.put(TITLE_COLUMN,journalTitle);
 
-        Log.d(TAG,"About to Delete Data to the Journal   DATA >>  TITLE :"+journalTitle);
+        String updateSql="UPDATE JOURNALS  SET  TITLE ="+newItem+" WHERE ID="+id+"  AND TITLE ="+oldItem;
+        Log.d(TAG,"UPDATING JOURNALS");
 
+        db.execSQL(updateSql);
 
-
-        if (dbProcessingResult==0){
-            // dbProcessingResult=db.insert(TABLE_NAME,null,contentValues);
-
-            dbProcessingResult=db.delete(TABLE_NAME,null, null);
-
-            if (statusFlag=false){
-
-                if (dbProcessingResult>=0){
-                    Log.d(TAG,"DELETED SUCCESSFULLY  DATA >>  TITLE :"+journalTitle +"RESULT : "+dbProcessingResult);
-
-
-                }else if (dbProcessingResult==-1){
-                    Log.d(TAG,"DELETE  FAILED  DATA >>  TITLE :"+journalTitle + " DESCRIPTION :"+dbProcessingResult);
-
-                }
-            }
-
-        }
+        statusFlag=true;
 
         return  statusFlag;
+    }
+
+
+     public Cursor findAll(){
+
+         // get sql lite context
+
+         SQLiteDatabase  db= this.getWritableDatabase();
+         Log.d(TAG,"RETRIEVING ALL JOURNALS RECORDS FROM DATABASE:");
+
+         Cursor data=db.rawQuery(SELECT_ALL_JOURNALS_COMMAND,null);
+
+         return data;
+    }
+
+
+    public Cursor getItemID(String journalTitle){
+        SQLiteDatabase  db= this.getWritableDatabase();
+        Log.d(TAG,"RETRIEVING ID FOR JOURNA TITLE :");
+        String sql="SELECT ID FROM JOURNALS WHERE  TITLE="+journalTitle;
+
+        Cursor data=db.rawQuery(sql,null);
+
+        return  data;
+
     }
 
 }

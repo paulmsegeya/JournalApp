@@ -50,28 +50,30 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="300dp"
+        android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout1">
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true">
 
         <Button
-            android:layout_marginTop="10dp"
+            android:id="@+id/buttonAddJournal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonAddJournal"
+            android:layout_marginTop="20dp"
             android:hint="@string/add"
-            android:layout_alignParentTop="true" />
+            android:onClick="btnClickAddJournal" />
 
 
         <Button
             android:id="@+id/buttonViewJournals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/journals"
-            android:layout_alignParentRight="true" />
+            android:onClick="btnClickViewJournals" />
     </RelativeLayout>
 
 </RelativeLayout>
