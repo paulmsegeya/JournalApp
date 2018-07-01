@@ -79,24 +79,13 @@ public class JournalDatabaseHelper extends SQLiteOpenHelper {
         ContentValues  contentValues= new ContentValues();
         contentValues.put(TITLE_COLUMN,journalTitle);
         contentValues.put(DESCRIPTION_COLUMN,journalDescription);
-        Log.d(TAG,"About to add Data to the Journal   DATA >>  TITLE :"+journalTitle + " DESCRIPTION :"+journalDescription);
 
-        if (dbProcessingResult==0){
-            dbProcessingResult=db.insert(TABLE_NAME,null,contentValues);
+        String sql =" INSERT INTO JOURNALS (TITLE, DESCRIPTION) VALUES ("+journalTitle+","+journalDescription+");";
+        db.execSQL(sql);
 
-            if (statusFlag=false){
-
-                if (dbProcessingResult>=0){
-                    Log.d(TAG,"INSERT SUCCESSFULLY  DATA >>  TITLE :"+journalTitle + " DESCRIPTION :"+journalDescription+"RESULT : "+dbProcessingResult);
+        statusFlag=true;
 
 
-                }else if (dbProcessingResult==-1){
-                    Log.d(TAG,"INSERT FAILED  DATA >>  TITLE :"+journalTitle + " DESCRIPTION :"+journalDescription+"RESULT : "+dbProcessingResult);
-
-                }
-            }
-
-        }
 
         return  statusFlag;
     }
